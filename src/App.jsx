@@ -1,7 +1,8 @@
 // App.jsx
 
 import React from 'react';
-import Trivia from './Components/TriviaApp'; // Assuming Trivia.jsx is in the same directory
+// component built for this project
+import Trivia from './Components/TriviaApp'; 
 
 function App() {
   return (

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 
+// an array of questions and answers
 const questions = [
  
     {
@@ -108,9 +109,11 @@ const questions = [
   
 
 function Trivia() {
-  // currentQuestion is a variable whos default value is set to 0 with useState(0)
+  // currentQuestion and score are variables whos default value is set to 0 with useState(0)
+  // currentQuestion tracks the index of teh current question
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
+
   // Create an array 'answeredOptions' the length of the questions array created earlier
   // to track answers given for each question, .fill(null) sets all the values to a 
   // default value of null.
@@ -127,9 +130,11 @@ function Trivia() {
     // create a copy of the array using the spread operator "..." We will make changes in
     // the copied array then copy it back, to help maintain immutability
     const newAnsweredOptions = [...answeredOptions];
+    
     // updated value at the index corresponding to the current question. index is
     // the option that was picked. Updating this value indicates an answer has been selected
     newAnsweredOptions[currentQuestion] = index;
+    
     // use the setAnsweredOptions function to update the answeredOptions array with our changes
     setAnsweredOptions(newAnsweredOptions);
 
@@ -139,18 +144,23 @@ function Trivia() {
     }
   };
   
+  // nextQuestion is a function because of the " = () => { " Arrow function syntax
   const nextQuestion = () => {
+    // make sure currentQuestion (the index) is less than the last index in the array
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     }
   };
 
+  // see above
   const prevQuestion = () => {
     if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
     }
   };
 
+  // when we do this "import Trivia from './Components/TriviaApp';" in another file, the
+  // following is what will be shown by including  <Trivia /> 
   return (
     <div >
       <h2>Trivia Question {currentQuestion + 1}</h2>
